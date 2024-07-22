@@ -2,6 +2,8 @@ from flask import request, jsonify
 from config import app, db
 from models import Contact
 
+
+
 # Define a route to retrieve all contacts from the database
 @app.route("/contacts", methods=["GET"])
 def get_contacts():
@@ -13,6 +15,8 @@ def get_contacts():
     
     # Return the list of contacts as a JSON response
     return jsonify({"contacts": json_contacts})
+
+
 
 # Route to create a new contact in the database
 @app.route("/create_contact", methods=["POST"])
@@ -40,7 +44,9 @@ def create_contact():
         return jsonify({"message": str(e)}), 400
     
     # If successful, return a success message and a 201 status code
-    return jsonify({"message": "user created"}), 201
+    return jsonify({"message": "user created"}), 200
+
+
 
 # Route to update an existing contact in the database
 @app.route("/update_contact/<int:user_id>", methods=["PATCH"])
@@ -65,6 +71,8 @@ def update_contact(user_id):
     # Return a success message with a 201 Created status code
     return jsonify({"message": "User was updated"}), 201
 
+
+
 # Route to delete a contact from the database
 @app.route("/delete_contact/<int:user_id>", methods=["DELETE"])
 def delete_contact(user_id):
@@ -81,6 +89,8 @@ def delete_contact(user_id):
 
     # Return a success message
     return jsonify({"message": "User was deleted"}), 200
+
+
 
 # Entry point of the application
 if __name__ == "__main__":
