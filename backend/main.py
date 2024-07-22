@@ -15,7 +15,7 @@ def get_contacts():
     return jsonify({"contacts": json_contacts})
 
 # Route to create a new contact in the database
-@app.route("/create-contact", methods=["POST"])
+@app.route("/create_contact", methods=["POST"])
 def create_contact():
     # Retrieve data from the JSON request body
     first_name = request.json.get("firstName")  # Corrected typo: "fistName" to "firstName"
