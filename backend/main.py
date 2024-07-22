@@ -42,7 +42,45 @@ def create_contact():
     # If successful, return a success message and a 201 status code
     return jsonify({"message": "user created"}), 201
 
+# Route to update an existing contact in the database
+@app.route("/update_contact/<int:user_id>", methods=["PATCH"])
+def update_contact(user_id):
+    # Retrieve the contact from the database by user ID
+    contact = Contact.query.get(user_id)
 
+    # If the contact does not exist, return a 404 Not Found response
+    if not contact:
+        return jsonify({"message": "User not found"}), 404
+    
+    # Get the data from the JSON request body
+    data = request.json
+    # Update the contact's attributes if new data is provided, otherwise keep existing values
+    contact.first_name = data.get("firstName", contact.first_name)
+    contact.last_name = data.get("lastName", contact.last_name)  # Corrected typo: "lastName" to "last_name"
+    contact.email = data.get("email", contact.email)
+
+    # Commit the changes to the database
+    db.session.commit()
+
+    # Return a success message with a 201 Created status code
+    return jsonify({"message": "User was updated"}), 201
+
+# Route to delete a contact from the database
+@app.route("/delete_contact/<int:user_id>", methods=["DELETE"])
+def delete_contact(user_id):
+    # Retrieve the contact from the database by user ID
+    contact = Contact.query.get(user_id)
+
+    # If the contact does not exist, return a 404 Not Found response
+    if not contact:
+        return jsonify({"message": "User not found"}), 404
+
+    # Delete the contact from the database
+    db.session.delete(contact)
+    db.session.commit()
+
+    # Return a success message
+    return jsonify({"message": "User was deleted"}), 200
 
 # Entry point of the application
 if __name__ == "__main__":
