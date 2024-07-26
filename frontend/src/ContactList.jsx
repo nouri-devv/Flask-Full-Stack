@@ -1,7 +1,7 @@
 import React from "react"
 
-const ContactList = ({contacts}) => {
-    return <div>
+const ContactList = ({ contacts }) => (
+    <div>
         <h2>Contacts</h2>
         <table>
             <thead>
@@ -27,6 +27,6 @@ const ContactList = ({contacts}) => {
             </tbody>
         </table>
     </div>
-}
+)
 
 export default ContactList
