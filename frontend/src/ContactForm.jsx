@@ -10,6 +10,7 @@ const ContactForm = ({ existingContact = {}, updateCallback }) => {
     const [firstName, setFirstName] = useState(existingContact.firstName || "");
     const [lastName, setLastName] = useState(existingContact.lastName || "");
     const [email, setEmail] = useState(existingContact.email || "");
+    const [phone, setPhone] = useState(existingContact || "");
 
     // Determine if we're updating an existing contact or creating a new one
     // If existingContact is not empty, we're updating
@@ -23,7 +24,8 @@ const ContactForm = ({ existingContact = {}, updateCallback }) => {
         const data = {
             firstName,
             lastName,
-            email
+            email,
+            phone
         }
 
         // Determine the appropriate API endpoint based on whether we're updating or creating
@@ -90,6 +92,21 @@ const ContactForm = ({ existingContact = {}, updateCallback }) => {
                     required // Make the field required
                 />
             </div>
+
+            {/* Form group for phone input */}
+            <div className="mb-3">
+                <label htmlFor="phone" className="form-label">Phone:</label>
+                <input
+                    type="phone" // Changed to email type for better validation
+                    className="form-control"
+                    id="phone"
+                    value={phone}
+                    onChange={(e) => setEmail(e.target.value)}
+                    required // Make the field required
+                />
+            </div>
+
+
             {/* Submit button with Bootstrap styling */}
             {/* The button text changes based on whether we're updating or creating */}
             <button type="submit" className="btn btn-primary">

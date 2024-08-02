@@ -39,6 +39,7 @@ const ContactList = ({ contacts, updateContact, updateCallback }) => {
                         <th>First Name</th>
                         <th>Last Name</th>
                         <th>Email</th>
+                        <th>Phone</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -50,6 +51,7 @@ const ContactList = ({ contacts, updateContact, updateCallback }) => {
                             <td>{contact.firstName}</td>
                             <td>{contact.lastName}</td>
                             <td>{contact.email}</td>
+                            <td>{contact.phone}</td>
                             <td>
                                 {/* Button to update the contact */}
                                 <button 
